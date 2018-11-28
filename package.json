@@ -1,0 +1,26 @@
+{
+  "name": "ie11",
+  "version": "0.0.1",
+  "description": "Utility for transpiling and polyfilling a script for IE11",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "klarstrup",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klarstrup/node-ie11.git"
+  },
+  "license": "MIT",
+  "bin": {
+    "ie11": "./cli.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "core-js": "^2.5.7",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-node-resolve": "^3.4.0"
+  }
+}
