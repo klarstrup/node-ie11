@@ -11,7 +11,7 @@ const program = require("commander");
 
 program
   .version("0.1.0")
-  .option("-o, --outputFilename")
+  .option("-o, --outputFilename", "Output IE11 code to a named file")
   .action((inputFilename, outputFilename) => {
     if (!inputFilename) {
       console.error(
@@ -71,7 +71,7 @@ program
             .generate({
               ...outputOptions
             })
-            .then(({ code }) => console.log(code));
+            .then(({ code }) => process.stdout.write(code));
         }
       });
   })
@@ -89,6 +89,7 @@ function codeMangler() {
     },
     generateBundle(outputOptions, bundle, isWrite) {
       // Strip out IIFE and any window. trickery
+      // Not in use because I'm not sure I want polyfills and stuff ending up at the global scope
       /*
       for (let part in bundle) {
         bundle[part].code = bundle[part].code
