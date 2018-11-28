@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-
-const rollup = require("rollup");
-const babelParser = require("@babel/parser");
-const resolve = require("rollup-plugin-node-resolve");
-const babel = require("rollup-plugin-babel");
-const prettier = require("rollup-plugin-prettier");
-const commonjs = require("rollup-plugin-commonjs");
 const fs = require("fs");
-const program = require("commander");
+const path = require("path");
+const rollup = require("./node_modules/rollup");
+const babelParser = require("./node_modules/@babel/parser");
+const resolve = require("./node_modules/rollup-plugin-node-resolve");
+const babel = require("./node_modules/rollup-plugin-babel");
+const prettier = require("./node_modules/rollup-plugin-prettier");
+const commonjs = require("./node_modules/rollup-plugin-commonjs");
+const program = require("./node_modules/commander");
 
 program
   .version("0.1.0")
@@ -26,14 +26,18 @@ program
         treeshake: true,
         plugins: [
           codeMangler(),
-          resolve(),
+          resolve({
+            customResolveOptions: {
+              moduleDirectory: path.resolve(__dirname, "./node_modules")
+            }
+          }),
           commonjs(),
           babel({
             babelrc: false,
             exclude: "node_modules/**", // only transpile our source code
             presets: [
               [
-                "@babel/preset-env",
+                path.resolve(__dirname, "./node_modules/@babel/preset-env"),
                 {
                   targets: {
                     browsers: ["ie 11"]

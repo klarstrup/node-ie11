@@ -1,6 +1,6 @@
 {
   "name": "ie11",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utility for transpiling and polyfilling a script for IE11",
   "main": "index.js",
   "scripts": {
